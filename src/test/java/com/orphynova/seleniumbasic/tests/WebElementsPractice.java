@@ -21,7 +21,6 @@ public class WebElementsPractice {
     public void BeforeTest(){
         WebDriverManager.chromedriver().setup();
         WebDriverManager.edgedriver().setup();
-        WebDriverManager.firefoxdriver().setup();
     }
 
     @BeforeMethod
