@@ -13,34 +13,41 @@ import org.testng.annotations.Test;
 
 public class DemoTest {
     private final String baseURL = "https://www.homeandstuff.com";
+    private WebDriver driver;
+
+
+    @BeforeTest
+    public void beforeTest(){
+        WebDriverManager.chromedriver().setup();
+    }
+
+    @BeforeMethod
+     public void beforeMethod(){
+        driver = new ChromeDriver();
+        driver.get(baseURL);
+    }
 
     @Test
     public void testHomePageTitle() throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.get(baseURL);
 
         //meta name in source
         String expTitle = "Furniture, Kitchen, Dining Room, Entertainment, Bedroom Sets, Outdoor, Fireplaces";
         String actTitle = driver.getTitle();
         Assert.assertEquals(expTitle,actTitle,"Incorrect Webpage Title");
-        Thread.sleep(2000);
-       driver.close(); // only closes the window
+//        Thread.sleep(2000);
+//       driver.close(); // only closes the window
 
     }
 
     @Test
     public void testSearchingForAProduct()  {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.get(baseURL);
-
-        //meta title in source
+               //meta title in source
         String expTitle = "Furniture, Kitchen, Dining Room, Entertainment, Bedroom Sets, Outdoor, Fireplaces";
         String actTitle = driver.getTitle();
         Assert.assertEquals(expTitle,actTitle,"Incorrect Webpage Title");
 
         WebElement txtSearch = driver.findElement(By.name("search_field"));
+        txtSearch.clear();
         txtSearch.sendKeys("table");
 
         WebElement btnSearch = driver.findElement(By.xpath("//*[@id=\"search\"]/form/div/span/input" ));
@@ -49,18 +56,13 @@ public class DemoTest {
         WebElement linkTest = driver.findElement(By.linkText("Atlantic Height Adjustable Standing Desk Converter Large"));
         linkTest.click();
 
-        driver.close(); // only closes the window
-
     }
 
-    @BeforeTest
-    public void beforeTest(){
-     //   WebDriverManager.chromedriver().setup();
-    }
+
 
     @AfterMethod
     public void CloseBrowser(){
-    //    driver.quit(); // instance is quit
+        driver.quit(); // instance is quit
 
     }
 }

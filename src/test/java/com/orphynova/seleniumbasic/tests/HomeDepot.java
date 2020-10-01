@@ -12,11 +12,12 @@ import org.testng.annotations.Test;
 
 public class HomeDepot {
     private final String baseURL = "https://www.homedepot.ca/en/home.html";
+    private WebDriver driver;
 
     @Test
     public void testHomePageTitle() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get(baseURL);
 
         //meta name in source
@@ -24,14 +25,14 @@ public class HomeDepot {
         String actTitle = driver.getTitle();
         Assert.assertEquals(expTitle,actTitle,"Incorrect Webpage Title");
 //        Thread.sleep(2000);
-        driver.close(); // only closes the window
+
 
     }
 
     @Test
     public void testSearchingForAProduct()  {
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get(baseURL);
 
         //meta title in source
@@ -45,7 +46,7 @@ public class HomeDepot {
 
         WebElement btnSearch = driver.findElement(By.xpath("//*[@id=\"gheader-autosuggest-input-submit\"]/acl-icon/svg"));
         btnSearch.click();
-        driver.close(); // only closes the window
+
     }
 
     @BeforeTest
@@ -55,7 +56,7 @@ public class HomeDepot {
 
     @AfterMethod
     public void CloseBrowser(){
-        //    driver.quit(); // instance is quit
+            driver.quit(); // instance is quit
 
     }
 }
