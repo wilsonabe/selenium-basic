@@ -36,7 +36,6 @@ public class DemoTest {
         Assert.assertEquals(expTitle,actTitle,"Incorrect Webpage Title");
 //        Thread.sleep(2000);
 //       driver.close(); // only closes the window
-
     }
 
     @Test
@@ -55,14 +54,10 @@ public class DemoTest {
 
         WebElement linkTest = driver.findElement(By.linkText("Atlantic Height Adjustable Standing Desk Converter Large"));
         linkTest.click();
-
     }
-
-
 
     @AfterMethod
     public void CloseBrowser(){
         driver.quit(); // instance is quit
-
     }
 }
