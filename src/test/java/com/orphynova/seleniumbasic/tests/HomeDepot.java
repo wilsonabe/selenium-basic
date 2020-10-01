@@ -7,12 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class DemoTest {
-    private final String baseURL = "https://www.homeandstuff.com";
+public class HomeDepot {
+    private final String baseURL = "https://www.homedepot.ca/en/home.html";
 
     @Test
     public void testHomePageTitle() throws InterruptedException {
@@ -21,11 +20,11 @@ public class DemoTest {
         driver.get(baseURL);
 
         //meta name in source
-        String expTitle = "Furniture, Kitchen, Dining Room, Entertainment, Bedroom Sets, Outdoor, Fireplaces";
+        String expTitle = "Home Improvement, Home Renovation, Tools, & Hardware | The Home Depot Canada";
         String actTitle = driver.getTitle();
         Assert.assertEquals(expTitle,actTitle,"Incorrect Webpage Title");
-        Thread.sleep(2000);
-       driver.close(); // only closes the window
+//        Thread.sleep(2000);
+        driver.close(); // only closes the window
 
     }
 
@@ -36,31 +35,27 @@ public class DemoTest {
         driver.get(baseURL);
 
         //meta title in source
-        String expTitle = "Furniture, Kitchen, Dining Room, Entertainment, Bedroom Sets, Outdoor, Fireplaces";
+        String expTitle = "Home Improvement, Home Renovation, Tools, & Hardware | The Home Depot Canada";
         String actTitle = driver.getTitle();
         Assert.assertEquals(expTitle,actTitle,"Incorrect Webpage Title");
 
-        WebElement txtSearch = driver.findElement(By.name("search_field"));
-        txtSearch.sendKeys("table");
+        WebElement txtSearch = driver.findElement(By.xpath("//*[@id=\"gheader-autosuggest-input\"]"));
+        txtSearch.clear();
+        txtSearch.sendKeys("tables");
 
-        WebElement btnSearch = driver.findElement(By.xpath("//*[@id=\"search\"]/form/div/span/input" ));
+        WebElement btnSearch = driver.findElement(By.xpath("//*[@id=\"gheader-autosuggest-input-submit\"]/acl-icon/svg"));
         btnSearch.click();
-
-        WebElement linkTest = driver.findElement(By.linkText("Atlantic Height Adjustable Standing Desk Converter Large"));
-        linkTest.click();
-
         driver.close(); // only closes the window
-
     }
 
     @BeforeTest
     public void beforeTest(){
-     //   WebDriverManager.chromedriver().setup();
+        //   WebDriverManager.chromedriver().setup();
     }
 
     @AfterMethod
     public void CloseBrowser(){
-    //    driver.quit(); // instance is quit
+        //    driver.quit(); // instance is quit
 
     }
 }
