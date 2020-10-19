@@ -39,16 +39,17 @@ public class HomeDepot {
     @Test
     public void testSearchingForAProduct()  {
 
-        //meta title in source
-        String expTitle = "Home Improvement, Home Renovation, Tools, & Hardware | The Home Depot Canada";
-        String actTitle = driver.getTitle();
-        Assert.assertEquals(expTitle,actTitle,"Incorrect Webpage Title");
-
         WebElement txtSearch = driver.findElement(By.xpath("//*[@id=\"gheader-autosuggest-input\"]"));
         txtSearch.clear();
         txtSearch.sendKeys("tables");
 
+
+        driver.findElement(By.xpath("/html/body/app-container/div[1]/srp-landing-page/global-header-container/store-selector-wrapper/hdca-dialog/div/div[1]/div/store-selector/div/div[2]/div[1]/div[2]/div/div[1]/div[3]/div/button[1]/span")).click();
+
         driver.findElement(By.id("gheader-autosuggest-input-submit")).click();
+        driver.findElement(By.xpath("//*[@id=\"gheader-autosuggest-input-submit\"]/acl-icon/svg")).click();
+
+//        (Below code can be shortened as above)
 //        WebElement btnSearch = driver.findElement(By.xpath("//*[@id=\"gheader-autosuggest-input-submit\"]/acl-icon/svg"));
 //        btnSearch.click();
     }
