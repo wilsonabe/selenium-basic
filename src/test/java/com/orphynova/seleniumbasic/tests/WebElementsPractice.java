@@ -40,7 +40,7 @@ public class WebElementsPractice {
         WebElement radDefault = driver.findElement(By.xpath("//*[@id=\"home-5\"]/form[2]/input[1]"));
         Assert.assertTrue(radDefault.isSelected(),"Male Default Button not selected");
 
-        //Check if different radio button is clicked
+        //Check if different radio button(female) is clicked
         WebElement radSelect = driver.findElement(By.xpath("//*[@id=\"home-5\"]/form[2]/input[2]"));
         radSelect.click();
 
