@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class WebElementsPractice {
     private String baseURL = "http://qaguru.ca/webelementapp.php";
@@ -118,10 +119,8 @@ public class WebElementsPractice {
     // IMPLICIT
     @ Test
     public void implicitWait() throws InterruptedException {
-        synchronized (driver){
-            driver.wait(10000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS),
         }
-    }
 
     //    EXPLICIT WAIT
 
@@ -129,7 +128,7 @@ public class WebElementsPractice {
     public void explicitWait(){
         WebDriverWait CalWait = new WebDriverWait(driver,10);
         WebElement CalControl = CalWait.until(ExpectedConditions.visibilityOfElementLocated(By.name("bday")));
-        //Alternatively using visibilityOf
+        //Alternatively using visibilityOf - above method visibilityOfElementLocated is better
        // WebElement CalControl = CalWait.until(ExpectedConditions.visibilityOf(driver.findElement(By.name("bday") ) ));
         CalControl.sendKeys("10"+ "25" +"1982");
     }
