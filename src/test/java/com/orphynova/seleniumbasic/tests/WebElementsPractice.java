@@ -119,7 +119,8 @@ public class WebElementsPractice {
     // IMPLICIT
     @ Test
     public void implicitWait() throws InterruptedException {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS),
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.findElement(By.name("bday")).sendKeys("10"+"15"+"1989");
         }
 
     //    EXPLICIT WAIT
